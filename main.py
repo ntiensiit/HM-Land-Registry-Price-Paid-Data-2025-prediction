@@ -71,7 +71,7 @@ print(df[FEATURES].isna().sum())
 X = df[FEATURES].copy()
 
 # %%
-split_date = df["date"].quantile(0.8)
+split_date = pd.Timestamp("2025-10-01")
 train_rows, test_rows = df["date"] <= split_date, df["date"] > split_date
 cap = df.loc[train_rows, "price"].quantile(0.999)
 train_rows &= df["price"] <= cap

@@ -21,7 +21,7 @@ The dataset is split into `pp-2025-part-01.csv` and `pp-2025-part-02.csv`. The f
 | `town` | Town or city | `LOUTH` |
 | `district` | Local authority district | `EAST LINDSEY` |
 | `county` | County | `LINCOLNSHIRE` |
-| `ppd_category` | A: individual sale, B: linked transaction | `A` |
+| `ppd_category` | A: individual sale, B: additional or linked transaction | `A` |
 | `record_status` | Record status code | `A` |
 
 Example row:
@@ -48,6 +48,6 @@ Or open `main.py` and run `# %%` cells in VS Code.
 ## Output
 
 - `artifacts/model.joblib` — fitted pipeline
-- `artifacts/metrics.json` — MAE, RMSE, R2
+- `artifacts/metrics.json` — MAE, RMSE, R2, MdAPE, and median-baseline MAE
 - `artifacts/feature_importance.csv` — permutation importance
 - `artifacts/*.png` — EDA, residuals, importance plots
