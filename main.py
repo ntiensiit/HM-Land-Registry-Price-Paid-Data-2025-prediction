@@ -1,6 +1,6 @@
 # %%
 # HM Land Registry 2025 price prediction
-DATA_PATH = "pp-2025.csv"
+DATA_PATH = "pp-2025-part-*.csv"
 MODEL_PATH = "artifacts/model.joblib"
 METRICS_PATH = "artifacts/metrics.json"
 IMPORTANCE_PATH = "artifacts/feature_importance.csv"
@@ -29,7 +29,13 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, OrdinalEncoder
 
 # %%
-df = pd.read_csv(DATA_PATH, header=None, names=COLUMNS, dtype=str)
+data_files = sorted(Path(".").glob(DATA_PATH))
+if not data_files:
+    raise FileNotFoundError("No split dataset files found")
+df = pd.concat(
+    [pd.read_csv(path, header=None, names=COLUMNS, dtype=str) for path in data_files],
+    ignore_index=True,
+)
 df["price"] = pd.to_numeric(df["price"], errors="coerce")
 print(df.shape)
 print(df.head(3))

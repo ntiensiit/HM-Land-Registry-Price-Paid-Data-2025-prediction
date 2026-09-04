@@ -2,4 +2,3 @@ artifacts/
 __pycache__/
 .venv/
 *.pyc
-pp-2025.csv
